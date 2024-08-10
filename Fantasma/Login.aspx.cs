@@ -24,13 +24,9 @@ namespace Fantasma
             // Obtener el nombre de usuario y contraseña ingresados
             string usuario = txtUsuario.Text;
             string contrasena = txtContrasena.Text;
-
-            // Encriptar la contraseña (ejemplo usando BCrypt)
-            string contrasenaEncriptada = contrasena;
-
             // Validar las credenciales contra la base de datos
             // (Reemplaza esta parte con tu lógica de acceso a la base de datos)
-            if (ValidarUsuario(usuario, contrasenaEncriptada))
+            if (ValidarUsuario(usuario, contrasena))
             {
                 // Crear una sesión para identificar al usuario
                 var userId = Guid.NewGuid().ToString();
@@ -46,10 +42,10 @@ namespace Fantasma
             }
         }
 
-        private bool ValidarUsuario(string usuario, string contrasenaEncriptada)
+        private bool ValidarUsuario(string usuario, string contrasena)
         {
             // Aquí va tu lógica para consultar la base de datos y comparar las contraseñas
-            bool ValidaUsuario = bUsuario.GetUsuario();
+            bool ValidaUsuario = bUsuario.GetUsuario(usuario, contrasena);
             return ValidaUsuario; // Ejemplo de retorno falso si no se encuentra el usuario
         }
     }
