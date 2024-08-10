@@ -11,10 +11,10 @@ namespace Fantasma.BAL
     public class BUsuario
     {
         DUsuario usuario = new DUsuario();
-        public bool GetUsuario()
+        public bool GetUsuario(string usuario, string contrasena)
         {
             DataTable tabla = new DataTable();
-            
+            tabla = usuario.GetUsuario(usuario, contrasena);
             return true;
         }
     }
