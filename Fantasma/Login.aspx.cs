@@ -16,29 +16,36 @@ namespace Fantasma
         BUsuario bUsuario = new BUsuario();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             // Obtener el nombre de usuario y contraseña ingresados
-            string usuario = txtUsuario.Text;
-            string contrasena = txtContrasena.Text;
+            string usuario = exampleInputEmail.Value;
+            string contrasena = exampleInputPassword.Value;
             // Validar las credenciales contra la base de datos
             // (Reemplaza esta parte con tu lógica de acceso a la base de datos)
-            if (ValidarUsuario(usuario, contrasena))
+            if (usuario.IsNullOrWhiteSpace() || contrasena.IsNullOrWhiteSpace())
             {
-                // Crear una sesión para identificar al usuario
-                var userId = Guid.NewGuid().ToString();
-                FormsAuthentication.SetAuthCookie(usuario, true);
-                Session["usuario"] = usuario;
-                Session["valida"] = true;
-                Response.Redirect("Default.aspx");
+                lblError.Text = "El usuario o contraseña no debe de estar vacio, Verifique";
             }
             else
             {
-                // Mostrar mensaje de error
-                lblError.Text = "Usuario o contraseña incorrectos.";
+                if (ValidarUsuario(usuario, contrasena))
+                {
+                    // Crear una sesión para identificar al usuario
+                    var userId = Guid.NewGuid().ToString();
+                    FormsAuthentication.SetAuthCookie(usuario, true);
+                    Session["usuario"] = usuario;
+                    Session["valida"] = true;
+                    Response.Redirect("Default.aspx");
+                }
+                else
+                {
+                    // Mostrar mensaje de error
+                    lblError.Text = "Usuario o contraseña incorrectos.";
+                }
             }
         }
 

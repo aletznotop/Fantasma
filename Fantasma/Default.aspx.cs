@@ -14,13 +14,14 @@ namespace Fantasma
         {
             if (Session["usuario"].ToString() != null || Session["usuario"].ToString() !="")
             {
-                this.wenas.InnerHtml = Session["usuario"].ToString();
+                this.lblUsuario.InnerHtml = Session["usuario"].ToString();
             }
             else
             {
                 Session.Abandon();
                 Response.Redirect("Login.aspx");
             }
+            this.lblOrdenes.InnerHtml = "200";
             
         }
     }

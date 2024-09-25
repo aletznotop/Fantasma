@@ -13,9 +13,7 @@ namespace Fantasma.BAL
         DUsuario usuario = new DUsuario();
         public bool GetUsuario(string user, string contrasena)
         {
-            DataTable tabla = new DataTable();
-            tabla = usuario.GetUsuario(user,contrasena);
-            return true;    
+            return usuario.GetUsuario(user);    
         }
     }
 }
